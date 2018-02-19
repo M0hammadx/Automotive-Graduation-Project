@@ -1,4 +1,3 @@
-
 #include <stdint.h> // ift
 #include <stdbool.h>
 #include "inc/hw_types.h"
@@ -11,11 +10,43 @@
 #include "inc/tm4c123gh6pm.h"
 #include "inc/hw_i2c.h"
 
-uint8_t lcd[6]={0x98,0x87,0x76,0x65,0x54,0x43};
-
+uint8_t lcd[18]={0x98,0x87,0x76,0x65,0x54,0x43,0x98,0x87,0x76,0x65,0x54,0x43,0x98,0x87,0x76,0x65,0x54,0x43};
+	uint8_t dat[18]={0x98,0x87,0x76,0x65,0x54,0x43,0x98,0x87,0x76,0x65,0x54,0x43,0x98,0x87,0x76,0x65,0x54,0x43};
 
 #define GPIO_PA6_I2C1SCL        0x00001803
 #define GPIO_PA7_I2C1SDA        0x00001C03
+
+#define MAX_SIZE  20
+
+#define ID_1    1
+#define ID_2    2
+#define ID_3    3
+#define ID_4 		4
+#define ID_5		5
+#define MAX_ELEMENT_NO 5
+
+#define Start_Address   0x0000
+#define Address_step(element_size)   element_size+4
+typedef struct E2PROM_Def
+{
+	uint8_t ID;
+	uint16_t start_address;
+	
+	uint8_t act_size;
+	
+}def;  
+
+def EE_var[5]= {{ID_1,Start_Address,18},
+{ID_2,Start_Address+Address_step(MAX_SIZE),0},
+{ID_3,Start_Address+2*Address_step(MAX_SIZE),0},
+{ID_4,Start_Address+3*Address_step(MAX_SIZE),0},
+{ID_5,Start_Address+4*Address_step(MAX_SIZE),0}};
+
+typedef struct E2PROM_DATA
+{
+    uint8_t size;
+    uint8_t data[MAX_SIZE];
+}E2data;
 
 unsigned long data;
 uint32_t ReadByte(uint32_t address);
@@ -23,9 +54,16 @@ void WriteByte(uint32_t address,uint8_t send);
 void WriteByteArray(uint32_t address,uint8_t *send,uint8_t n);
  void ReadByteArray(uint32_t address,uint32_t *arr,uint8_t cnt);
 
+ void Write_ee(uint8_t ID,uint8_t *send,uint8_t n);
+void Read_ee(uint8_t ID,uint32_t *arr,uint8_t *cnt);
+
 int main(void)
-{//some source said delay is 5-10mx max
-uint32_t arr[6];
+{
+uint32_t arr[19];
+uint8_t cnt;
+	for(int i=0;i<18;i++){
+		dat[i]=i;
+	}
 //
 // Set the clocking to run directly from the external crystal/oscillator.
 // TODO: The SYSCTL_XTAL_ value must be changed to match the value of the
@@ -85,18 +123,52 @@ I2CMasterInitExpClk(I2C1_BASE, SysCtlClockGet(), false);
 
 while(1)
 {
-	
-WriteByteArray(0xF0,lcd,6);//max address 0x1FF 
-	WriteByte(0xF0,0x99);
-	WriteByte(0xF1,0x88);
-	data=ReadByte(0xF0);
-	data=ReadByte(0xF1);
-ReadByteArray(0xF0,arr,6);
-
+Write_ee(ID_1,dat,18);
+//WriteByteArray(0x0,dat,16);//max address 0x1FF 
+//WriteByteArray(0x0+12,data,6);
+	//WriteByte(0xF0,0x99);
+	//WriteByte(0xF1,0x88);
+	//data=ReadByte(0xF0);
+	//data=ReadByte(0xF1);
+//ReadByteArray(0x0,arr,19);
+Read_ee(ID_1,arr,&cnt);
 }
 //return(0);
 }
 
+void Write_ee(uint8_t ID,uint8_t *send,uint8_t n){
+	int idx=0;
+	while(EE_var[idx].ID!=ID){idx++;}
+	
+	
+	uint8_t arr[16];
+	arr[0]=n;
+	int i=1;
+	for(;i<16;i++){//send 1st 15-byte
+		arr[i]=send[i-1];
+	}
+	
+  WriteByteArray(EE_var[idx].start_address,arr,16 );		
+if(n>15){
+	/*uint8_t arr2[n-15];
+	for(i=0;i<n-15;i++){
+		arr2[i]=send[i+15];
+	}*/
+  WriteByteArray(EE_var[idx].start_address+16,&send[15],n-15 );		
+	
+}
+}
+
+void Read_ee(uint8_t ID,uint32_t *arr,uint8_t *cnt){
+	*cnt=EE_var[0].act_size;
+	int i=0;
+	while(EE_var[i].ID!=ID){
+	i++;*cnt=EE_var[i].act_size;
+	}
+	
+	ReadByteArray(EE_var[i].start_address,arr,(*cnt )+1);		
+	
+}
 
 //takes address + data to send
 void WriteByte(uint32_t address,uint8_t send){
@@ -117,7 +189,7 @@ I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
 
 while(I2CMasterBusy(I2C1_BASE));
 
-SysCtlDelay(5500000); // writing time 
+SysCtlDelay(5500000); // writing time
 	
 }
 //	takes address returns data at address
@@ -166,12 +238,12 @@ I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_SEND_START);
 
 while(I2CMasterBusy(I2C1_BASE));
 
-if(n>=15)n=15;
+if(n>16)n=16;
 	
-for (i=0;i<n;i++)
+for (i=0;i<n-1;i++)
 {
 	bla=send[i];
-I2CMasterDataPut(I2C1_BASE, lcd[i]); // data to be saved at Addr 0x11 under autoincrement mode
+I2CMasterDataPut(I2C1_BASE, send[i]); // data to be saved at Addr 0x11 under autoincrement mode
 
 I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_SEND_CONT);
 
@@ -180,7 +252,7 @@ while(I2CMasterBusy(I2C1_BASE));
 }
 	
 
-I2CMasterDataPut(I2C1_BASE, lcd[i]); // data to be saved at Addr 0x12 under autoincrement mode
+I2CMasterDataPut(I2C1_BASE, send[i]); // data to be saved at Addr 0x12 under autoincrement mode
 
 I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
 
@@ -230,3 +302,28 @@ while(I2CMasterBusy(I2C1_BASE));
 
 	
 }
+
+
+/*
+n is number of bytes and >= 3.
+
+1)
+Put data to I2C
+Send control command:I2C_MASTER_CMD_BURST_SEND_START
+wait until ready
+
+2)
+Put data to I2C
+I2C_MASTER_CMD_BURST_SEND_CONT
+wait until ready
+
+....
+repeat step 2) n-3 times
+.....
+
+3)
+Put data to I2C
+I2C_MASTER_CMD_BURST_SEND_FINISH
+wait until ready
+*/
+
