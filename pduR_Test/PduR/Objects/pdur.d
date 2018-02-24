@@ -1,0 +1,10 @@
+.\objects\pdur.o: pduR.c
+.\objects\pdur.o: PduR.h
+.\objects\pdur.o: Std_Types.h
+.\objects\pdur.o: types.h
+.\objects\pdur.o: PduR_Cfg.h
+.\objects\pdur.o: PduR_Types.h
+.\objects\pdur.o: ComStack_Types.h
+.\objects\pdur.o: PduR_If.h
+.\objects\pdur.o: PduR.h
+.\objects\pdur.o: PduR_CanIf.h

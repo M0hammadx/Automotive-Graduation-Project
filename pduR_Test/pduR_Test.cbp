@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="pduR_Test" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/pduR_Test" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/pduR_Test" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="PduR/CanIf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/CanIf.h" />
+		<Unit filename="PduR/CanIf_PbCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/CanIf_PbCfg.h" />
+		<Unit filename="PduR/CanIf_Types.h" />
+		<Unit filename="PduR/CanTp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/CanTp.h" />
+		<Unit filename="PduR/CanTp_Cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/CanTp_Cfg.h" />
+		<Unit filename="PduR/CanTp_Types.h" />
+		<Unit filename="PduR/Com.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/Com.h" />
+		<Unit filename="PduR/ComStack_Types.h" />
+		<Unit filename="PduR/Com_PbCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/Com_PbCfg.h" />
+		<Unit filename="PduR/Com_Types.h" />
+		<Unit filename="PduR/Dcm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/Dcm.h" />
+		<Unit filename="PduR/Dcm_LCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/Dcm_Lcfg.h" />
+		<Unit filename="PduR/Dcm_Types.h" />
+		<Unit filename="PduR/EcuC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/EcuC.h" />
+		<Unit filename="PduR/EcuC_PbCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/EcuC_PbCfg.h" />
+		<Unit filename="PduR/EcuC_Types.h" />
+		<Unit filename="PduR/PduR.h" />
+		<Unit filename="PduR/PduR_CanIf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/PduR_CanIf.h" />
+		<Unit filename="PduR/PduR_CanTp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/PduR_CanTp.h" />
+		<Unit filename="PduR/PduR_Cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/PduR_Cfg.h" />
+		<Unit filename="PduR/PduR_Com.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/PduR_Com.h" />
+		<Unit filename="PduR/PduR_Dcm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/PduR_Dcm.h" />
+		<Unit filename="PduR/PduR_If.h" />
+		<Unit filename="PduR/PduR_Logic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/PduR_PbCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/PduR_PbCfg.h" />
+		<Unit filename="PduR/PduR_Routing.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/PduR_Types.h" />
+		<Unit filename="PduR/Std_Types.h" />
+		<Unit filename="PduR/pduR.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="PduR/types.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pduR_test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pduR_test.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

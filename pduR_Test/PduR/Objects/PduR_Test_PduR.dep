@@ -1,0 +1,45 @@
+Dependencies for Project 'PduR_Test', Target 'PduR': (DO NOT MODIFY !)
+F (.\pduR.c)(0x5A2CB0C9)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork --split_sections-I"F:\E-Learning\Graduation project\PduR\RTE\_PduR"-I"F:\Installed Programs\Keil\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\Device\ARM\ARMCM4\Include"-I"F:\Installed Programs\Keil\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="522" -DARMCM4-o .\objects\pdur.o --omf_browse .\objects\pdur.crf --depend .\objects\pdur.d)
+I (PduR.h)(0x5A3BBA36)
+I (Std_Types.h)(0x5A3A6B73)
+I (types.h)(0x5A2CAF44)
+I (PduR_Cfg.h)(0x5A2CBD93)
+I (PduR_Types.h)(0x5A3AB92F)
+I (ComStack_Types.h)(0x5A3A7017)
+I (PduR_If.h)(0x5A3A6EE9)
+I (PduR_CanIf.h)(0x5A3BBB34)
+F (.\PduR_Types.h)(0x5A3AB92F)()
+F (.\types.h)(0x5A2CAF44)()
+F (.\PduR_Cfg.h)(0x5A2CBD93)()
+F (.\PduR.h)(0x5A3BBA36)()
+F (.\Std_Types.h)(0x5A3A6B73)()
+F (.\PduR_Routing.c)(0x5A3BBB04)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork --split_sections-I"F:\E-Learning\Graduation project\PduR\RTE\_PduR"-I"F:\Installed Programs\Keil\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\Device\ARM\ARMCM4\Include"-I"F:\Installed Programs\Keil\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="522" -DARMCM4-o .\objects\pdur_routing.o --omf_browse .\objects\pdur_routing.crf --depend .\objects\pdur_routing.d)
+I (PduR.h)(0x5A3BBA36)
+I (Std_Types.h)(0x5A3A6B73)
+I (types.h)(0x5A2CAF44)
+I (PduR_Cfg.h)(0x5A2CBD93)
+I (PduR_Types.h)(0x5A3AB92F)
+I (ComStack_Types.h)(0x5A3A7017)
+I (PduR_If.h)(0x5A3A6EE9)
+I (PduR_CanIf.h)(0x5A3BBB34)
+F (.\PduR_If.h)(0x5A3A6EE9)()
+F (.\PduR_CanIf.c)(0x5A3A664B)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork --split_sections-I"F:\E-Learning\Graduation project\PduR\RTE\_PduR"-I"F:\Installed Programs\Keil\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\Device\ARM\ARMCM4\Include"-I"F:\Installed Programs\Keil\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="522" -DARMCM4-o .\objects\pdur_canif.o --omf_browse .\objects\pdur_canif.crf --depend .\objects\pdur_canif.d)
+I (PduR.h)(0x5A3BBA36)
+I (Std_Types.h)(0x5A3A6B73)
+I (types.h)(0x5A2CAF44)
+I (PduR_Cfg.h)(0x5A2CBD93)
+I (PduR_Types.h)(0x5A3AB92F)
+I (ComStack_Types.h)(0x5A3A7017)
+I (PduR_If.h)(0x5A3A6EE9)
+I (PduR_CanIf.h)(0x5A3BBB34)
+F (.\PduR_CanIf.h)(0x5A3BBB34)()
+F (.\ComStack_Types.h)(0x5A3A7017)()
+F (.\PduR_Logic.c)(0x5A3BB4DC)(-c --cpu Cortex-M4 -D__EVAL --li -g -O0 --apcs=interwork --split_sections-I"F:\E-Learning\Graduation project\PduR\RTE\_PduR"-I"F:\Installed Programs\Keil\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\Device\ARM\ARMCM4\Include"-I"F:\Installed Programs\Keil\Keil_v5\ARM\CMSIS\Include"-D__UVISION_VERSION="522" -DARMCM4-o .\objects\pdur_logic.o --omf_browse .\objects\pdur_logic.crf --depend .\objects\pdur_logic.d)
+I (PduR.h)(0x5A3BBA36)
+I (Std_Types.h)(0x5A3A6B73)
+I (types.h)(0x5A2CAF44)
+I (PduR_Cfg.h)(0x5A2CBD93)
+I (PduR_Types.h)(0x5A3AB92F)
+I (ComStack_Types.h)(0x5A3A7017)
+I (PduR_If.h)(0x5A3A6EE9)
+I (PduR_CanIf.h)(0x5A3BBB34)

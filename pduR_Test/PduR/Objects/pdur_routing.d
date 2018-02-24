@@ -1,0 +1,10 @@
+.\objects\pdur_routing.o: PduR_Routing.c
+.\objects\pdur_routing.o: PduR.h
+.\objects\pdur_routing.o: Std_Types.h
+.\objects\pdur_routing.o: types.h
+.\objects\pdur_routing.o: PduR_Cfg.h
+.\objects\pdur_routing.o: PduR_Types.h
+.\objects\pdur_routing.o: ComStack_Types.h
+.\objects\pdur_routing.o: PduR_If.h
+.\objects\pdur_routing.o: PduR.h
+.\objects\pdur_routing.o: PduR_CanIf.h
