@@ -1,0 +1,8 @@
+
+**** Build of configuration Debug for project TM4C123G LaunchPad PI Motor Control ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+gmake: *** No rule to make target 'C:/ti/ccsv7/eclipse/TIVAWARE_INSTALL/driverlib/ccs/Debug/driverlib.lib', needed by 'all'.
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
