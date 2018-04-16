@@ -1,6 +1,6 @@
 Dependencies for Project 'test', Target 'Target 1': (DO NOT MODIFY !)
 F (.\driverlib\rvmdk\driverlib.lib)(0x5A73845B)()
-F (.\main.c)(0x5A9AA253)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\main.c)(0x5AD4AF81)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (DriverIncludes.h)(0x5A9BE885)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C5634)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C5634)
@@ -21,11 +21,36 @@ I (driverlib/fpu.h)(0x5A73845B)
 I (driverlib/pin_map.h)(0x5A73845B)
 I (driverlib/debug.h)(0x5A73845B)
 I (driverlib/rom.h)(0x5A73845B)
-I (motor/MotorIF.h)(0x5A99F5DB)
+I (motor/MotorIF.h)(0x5AA1004F)
 I (encoder/Encoder.h)(0x5A9A165D)
 I (servo/Servo.h)(0x5A9A17F0)
-F (.\motor\Motor_DIO.c)(0x5A9BE8BD)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\motor_dio.o --omf_browse .\objects\motor_dio.crf --depend .\objects\motor_dio.d)
-I (motor\Motor_DIO.h)(0x5A96B5D7)
+I (UART.h)(0x5AA0F8EE)
+I (user_data_frames.h)(0x5AA0FB6F)
+F (.\UART.c)(0x5ABBEF80)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\uart.o --omf_browse .\objects\uart.crf --depend .\objects\uart.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C5634)
+I (inc/tm4c123gh6pm.h)(0x5A73845B)
+I (DriverIncludes.h)(0x5A9BE885)
+I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C5634)
+I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588C5634)
+I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x588C5634)
+I (C:\Keil_v5\ARM\ARMCC\include\inttypes.h)(0x588C5634)
+I (inc/hw_memmap.h)(0x5A73845B)
+I (inc/hw_types.h)(0x5A73845B)
+I (inc/hw_gpio.h)(0x5A73845B)
+I (driverlib/sysctl.h)(0x5A73845B)
+I (driverlib/interrupt.h)(0x5A73845B)
+I (driverlib/gpio.h)(0x5A73845B)
+I (driverlib/qei.h)(0x5A73845B)
+I (driverlib/pwm.h)(0x5A73845B)
+I (driverlib/uart.h)(0x5A73845B)
+I (driverlib/fpu.h)(0x5A73845B)
+I (driverlib/pin_map.h)(0x5A73845B)
+I (driverlib/debug.h)(0x5A73845B)
+I (driverlib/rom.h)(0x5A73845B)
+I (FIFO.h)(0x5A9FCF99)
+I (UART.h)(0x5AA0F8EE)
+F (.\motor\Motor_DIO.c)(0x5A9FEA29)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\motor_dio.o --omf_browse .\objects\motor_dio.crf --depend .\objects\motor_dio.d)
+I (motor\Motor_DIO.h)(0x5A9FE9E7)
 I (motor\../DriverIncludes.h)(0x5A9BE885)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C5634)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C5634)
@@ -46,8 +71,8 @@ I (motor\../driverlib/fpu.h)(0x5A73845B)
 I (motor\../driverlib/pin_map.h)(0x5A73845B)
 I (motor\../driverlib/debug.h)(0x5A73845B)
 I (motor\../driverlib/rom.h)(0x5A73845B)
-F (.\motor\Motor_PWM.c)(0x5A9A9D4F)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\motor_pwm.o --omf_browse .\objects\motor_pwm.crf --depend .\objects\motor_pwm.d)
-I (motor\Motor_PWM.h)(0x5A99F007)
+F (.\motor\Motor_PWM.c)(0x5ABD0299)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\motor_pwm.o --omf_browse .\objects\motor_pwm.crf --depend .\objects\motor_pwm.d)
+I (motor\Motor_PWM.h)(0x5AA125D1)
 I (motor\../DriverIncludes.h)(0x5A9BE885)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C5634)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C5634)
@@ -68,8 +93,8 @@ I (motor\../driverlib/fpu.h)(0x5A73845B)
 I (motor\../driverlib/pin_map.h)(0x5A73845B)
 I (motor\../driverlib/debug.h)(0x5A73845B)
 I (motor\../driverlib/rom.h)(0x5A73845B)
-F (.\motor\MotorIF.c)(0x5A9BEFE7)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\motorif.o --omf_browse .\objects\motorif.crf --depend .\objects\motorif.d)
-I (motor\Motor_DIO.h)(0x5A96B5D7)
+F (.\motor\MotorIF.c)(0x5AA1267A)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\motorif.o --omf_browse .\objects\motorif.crf --depend .\objects\motorif.d)
+I (motor\Motor_DIO.h)(0x5A9FE9E7)
 I (motor\../DriverIncludes.h)(0x5A9BE885)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C5634)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588C5634)
@@ -90,8 +115,8 @@ I (motor\../driverlib/fpu.h)(0x5A73845B)
 I (motor\../driverlib/pin_map.h)(0x5A73845B)
 I (motor\../driverlib/debug.h)(0x5A73845B)
 I (motor\../driverlib/rom.h)(0x5A73845B)
-I (motor\Motor_PWM.h)(0x5A99F007)
-I (motor\MotorIF.h)(0x5A99F5DB)
+I (motor\Motor_PWM.h)(0x5AA125D1)
+I (motor\MotorIF.h)(0x5AA1004F)
 F (.\encoder\Encoder.c)(0x5A9A10C2)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\encoder.o --omf_browse .\objects\encoder.crf --depend .\objects\encoder.d)
 I (encoder\Encoder.h)(0x5A9A165D)
 I (encoder\../DriverIncludes.h)(0x5A9BE885)
@@ -114,7 +139,7 @@ I (encoder\../driverlib/fpu.h)(0x5A73845B)
 I (encoder\../driverlib/pin_map.h)(0x5A73845B)
 I (encoder\../driverlib/debug.h)(0x5A73845B)
 I (encoder\../driverlib/rom.h)(0x5A73845B)
-F (.\servo\Servo.c)(0x5A9BEFE7)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\servo.o --omf_browse .\objects\servo.crf --depend .\objects\servo.d)
+F (.\servo\Servo.c)(0x5AA123E3)(--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections-I.\RTE\_Target_1-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM-o .\objects\servo.o --omf_browse .\objects\servo.crf --depend .\objects\servo.d)
 I (servo\Servo.h)(0x5A9A17F0)
 I (servo\../DriverIncludes.h)(0x5A9BE885)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588C5634)

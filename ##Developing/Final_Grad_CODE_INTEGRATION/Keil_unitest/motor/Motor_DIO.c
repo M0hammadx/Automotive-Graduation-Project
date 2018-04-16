@@ -31,22 +31,25 @@ void Motor_DIO_Init(void){
 //high current output   GPIOPadConfigSet();
    InitFlag=1;
 }
-void Motor_DIO_Set(void){
+void Motor_DIO_Forward(void){
     if(InitFlag==0){
        //generate error flag
     }
     else{
-			ROM_GPIOPinWrite(GPIO_PORTA_BASE,GPIO_PIN_3 | GPIO_PIN_4, GPIO_PIN_3 | GPIO_PIN_4);
+			ROM_GPIOPinWrite(GPIO_PORTA_BASE,GPIO_PIN_3 , GPIO_PIN_3 );
+			ROM_GPIOPinWrite(GPIO_PORTA_BASE,GPIO_PIN_4 , 0x00 );
     }
 }
 
-void Motor_DIO_Clear(void){
+void Motor_DIO_Backward(void){
 
     if(InitFlag==0){
            //generate error flag
         }
     else{
-      ROM_GPIOPinWrite(GPIO_PORTA_BASE,GPIO_PIN_3 | GPIO_PIN_4, 0x00);
+			
+      ROM_GPIOPinWrite(GPIO_PORTA_BASE,GPIO_PIN_3 , 0x00);
+			ROM_GPIOPinWrite(GPIO_PORTA_BASE,GPIO_PIN_4 , GPIO_PIN_4 );
     }
 }
 

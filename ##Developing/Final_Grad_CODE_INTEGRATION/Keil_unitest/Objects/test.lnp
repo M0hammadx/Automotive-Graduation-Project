@@ -1,6 +1,7 @@
 --cpu=Cortex-M4.fp
 ".\driverlib\rvmdk\driverlib.lib"
 ".\objects\main.o"
+".\objects\uart.o"
 ".\objects\motor_dio.o"
 ".\objects\motor_pwm.o"
 ".\objects\motorif.o"

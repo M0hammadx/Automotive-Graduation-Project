@@ -14,7 +14,7 @@
 
 //*************************** Functions Prototypes ****************************//
 void Motor_DIO_Init(void);
-void Motor_DIO_Set(void);
-void Motor_DIO_Clear(void);
+void Motor_DIO_Forward(void);
+void Motor_DIO_Backward(void);
 
 #endif /* MOTOR_MOTOR_DIO_H_ */

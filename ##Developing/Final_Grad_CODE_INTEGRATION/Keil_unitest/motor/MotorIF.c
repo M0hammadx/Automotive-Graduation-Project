@@ -24,9 +24,9 @@ void Motor_Init(void){
 
 void Motor_Set_Direction(g_Motor_Direction Dir){
 	if(Dir == MOTOR_FORWARD){
-		Motor_PWM_break();
+		//Motor_PWM_break();
 		SysCtlDelay(1000);
-		Motor_DIO_Clear();
+		Motor_DIO_Forward();
 		
 #ifdef AUTO_SPEED_IF_DIRECTION_CHANGED
 		Motor_Change_Speed(u16Motor1,u16Motor2);
@@ -34,9 +34,9 @@ void Motor_Set_Direction(g_Motor_Direction Dir){
 		
 	}
 	else if(Dir == MOTOR_BACKWARD){
-		Motor_PWM_break();
+	//	Motor_PWM_break();
 		SysCtlDelay(1000);
-		Motor_DIO_Set();
+		Motor_DIO_Backward();
 		
 #ifdef AUTO_SPEED_IF_DIRECTION_CHANGED
 		Motor_Change_Speed(u16Motor1,u16Motor2);
@@ -58,5 +58,5 @@ void Motor_Change_Speed(uint16_t u16Motor1_Speed,uint16_t u16Motor2_Speed){
 }
 
 void Motor_Stop(void){
-	Motor_PWM_break();
+//	Motor_PWM_break();
 }
