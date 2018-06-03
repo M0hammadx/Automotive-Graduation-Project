@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="CanIf_Inf" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/CanIf_Inf" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/CanIf_Inf" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="CanIf/Can.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/Can.h" />
+		<Unit filename="CanIf/CanIf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/CanIf.h" />
+		<Unit filename="CanIf/CanIf_Cbk.h" />
+		<Unit filename="CanIf/CanIf_Cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/CanIf_Cfg.h" />
+		<Unit filename="CanIf/CanIf_Types.h" />
+		<Unit filename="CanIf/CanNm_Cfg.h" />
+		<Unit filename="CanIf/CanSM.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/CanSM_Cbk.h" />
+		<Unit filename="CanIf/CanTp_Cfg.h" />
+		<Unit filename="CanIf/CanTrcv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/CanTrcv.h" />
+		<Unit filename="CanIf/CanTrcv_Cfg.h" />
+		<Unit filename="CanIf/Can_Cfg.h" />
+		<Unit filename="CanIf/Can_GeneralTypes.h" />
+		<Unit filename="CanIf/ComStack_Types.h" />
+		<Unit filename="CanIf/EcuC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/EcuC.h" />
+		<Unit filename="CanIf/EcuC_PbCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/EcuC_PbCfg.h" />
+		<Unit filename="CanIf/EcuC_Types.h" />
+		<Unit filename="CanIf/EcuM.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/EcuM.h" />
+		<Unit filename="CanIf/EcuM_Types.h" />
+		<Unit filename="CanIf/PduR.h" />
+		<Unit filename="CanIf/PduR_CanIf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/PduR_CanIf.h" />
+		<Unit filename="CanIf/PduR_Cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/PduR_Cfg.h" />
+		<Unit filename="CanIf/PduR_Logic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/PduR_PbCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/PduR_PbCfg.h" />
+		<Unit filename="CanIf/PduR_Routing.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/PduR_Types.h" />
+		<Unit filename="CanIf/Std_Types.h" />
+		<Unit filename="CanIf/pduR.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="CanIf/types.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
