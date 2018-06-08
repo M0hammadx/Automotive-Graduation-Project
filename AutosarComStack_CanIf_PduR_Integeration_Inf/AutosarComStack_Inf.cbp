@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="AutosarComStack_Inf" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/AutosarComStack_Inf" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/AutosarComStack_Inf" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="ComStack/Can.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/Can.h" />
+		<Unit filename="ComStack/CanIf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/CanIf.h" />
+		<Unit filename="ComStack/CanIf_Cbk.h" />
+		<Unit filename="ComStack/CanIf_Cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/CanIf_Cfg.h" />
+		<Unit filename="ComStack/CanIf_Types.h" />
+		<Unit filename="ComStack/CanNm_Cfg.h" />
+		<Unit filename="ComStack/CanSM.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/CanSM_Cbk.h" />
+		<Unit filename="ComStack/CanTp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/CanTp.h" />
+		<Unit filename="ComStack/CanTp_Cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/CanTp_Cfg.h" />
+		<Unit filename="ComStack/CanTp_Types.h" />
+		<Unit filename="ComStack/CanTrcv.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/CanTrcv.h" />
+		<Unit filename="ComStack/CanTrcv_Cfg.h" />
+		<Unit filename="ComStack/Can_Cfg.h" />
+		<Unit filename="ComStack/Can_GeneralTypes.h" />
+		<Unit filename="ComStack/Com.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/Com.h" />
+		<Unit filename="ComStack/ComStack_Types.h" />
+		<Unit filename="ComStack/Com_PbCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/Com_PbCfg.h" />
+		<Unit filename="ComStack/Com_Types.h" />
+		<Unit filename="ComStack/Dcm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/Dcm.h" />
+		<Unit filename="ComStack/Dcm_LCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/Dcm_Lcfg.h" />
+		<Unit filename="ComStack/Dcm_Types.h" />
+		<Unit filename="ComStack/EcuC.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/EcuC.h" />
+		<Unit filename="ComStack/EcuC_PbCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/EcuC_PbCfg.h" />
+		<Unit filename="ComStack/EcuC_Types.h" />
+		<Unit filename="ComStack/EcuM.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/EcuM.h" />
+		<Unit filename="ComStack/EcuM_Types.h" />
+		<Unit filename="ComStack/PduR.h" />
+		<Unit filename="ComStack/PduR_CanIf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/PduR_CanIf.h" />
+		<Unit filename="ComStack/PduR_CanTp.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/PduR_CanTp.h" />
+		<Unit filename="ComStack/PduR_Cfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/PduR_Cfg.h" />
+		<Unit filename="ComStack/PduR_Com.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/PduR_Com.h" />
+		<Unit filename="ComStack/PduR_Dcm.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/PduR_Dcm.h" />
+		<Unit filename="ComStack/PduR_If.h" />
+		<Unit filename="ComStack/PduR_Logic.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/PduR_PbCfg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/PduR_PbCfg.h" />
+		<Unit filename="ComStack/PduR_Routing.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/PduR_Types.h" />
+		<Unit filename="ComStack/Std_Types.h" />
+		<Unit filename="ComStack/pduR.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ComStack/types.h" />
+		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="test.h" />
+		<Extensions>
+			<code_completion />
+			<envvars />
+			<debugger />
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
