@@ -1,0 +1,41 @@
+/**
+ * \file	PduR_If.h
+ *
+ * \version ..
+ *
+ * \brief	this file is used to declare functions that can be used in router module interfce
+ *				such as PduR_CanIf.c, PduR_CanLinIf.c, and PduR_ComIf.c
+ *
+ * \date 	dec 20, 2017
+ *
+ * \author  ADAS
+ *
+ */
+
+
+
+#ifndef PDUR_IF_H_
+#define PDUR_IF_H_
+
+/* -------------------------------------------------------------------------- */
+/*                              File include                                  */
+/* -------------------------------------------------------------------------- */
+#include "PduR.h"
+
+#if PDUR_ZERO_COST_OPERATION == STD_OFF
+/* -------------------------------------------------------------------------- */
+/*                         Functions declarations                             */
+/* -------------------------------------------------------------------------- */
+
+//Prototypes implemented in PDUR routing and used in PDUR logic
+void PduR_RouteRxIndication(const PduRDestPdu_type *, const PduInfoType *);
+void PduR_RouteTxConfirmation(const PduRRoutingPath_type *, Std_ReturnType);
+
+//Interfaces for lower layer
+//Interfaces implemented in PduR_Logic.c and used in PDU interface
+void PduR_RxIndication(PduIdType, const PduInfoType*);
+void PduR_TxConfirmation(PduIdType, Std_ReturnType);
+
+#endif //PDUR_ZERO_COST_OPERATION
+
+#endif //PDUR_IF_H_

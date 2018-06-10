@@ -1,6 +1,0 @@
-#ifndef CANTP_CFG_H_INCLUDED
-#define CANTP_CFG_H_INCLUDED
-
-
-
-#endif // CANTP_CFG_H_INCLUDED
