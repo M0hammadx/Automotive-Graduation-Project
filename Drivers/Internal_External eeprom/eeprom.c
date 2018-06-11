@@ -165,15 +165,17 @@ void Write_ee(uint8_t ID,uint8_t *send,uint8_t n){ // n not exceeds 19
 }
 
 void Read_ee(uint8_t ID,uint32_t *arr,uint8_t *cnt){
-	*cnt=EE_var[0].act_size;
-	int i=0;
-	while(EE_var[i].ID!=ID){
-	i++;
-	*cnt=EE_var[i].act_size;
+	
+	int idx=0;
+	while(EE_var[idx].ID!=ID && (idx < (MAX_ELEMENT_NO))){idx++;} //fkn bug
+	if(idx >= MAX_ELEMENT_NO){
+				//error report
 	}
+	else{
+	*cnt=EE_var[0].act_size;
 	
 	ReadByteArray(EE_var[i].start_address,arr,(*cnt )+1);		
-	
+	}
 }
 
 //takes address + data to send

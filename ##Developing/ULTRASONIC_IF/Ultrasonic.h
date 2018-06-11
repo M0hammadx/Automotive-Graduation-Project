@@ -17,7 +17,7 @@
 #include "driverlib/sysctl.h"
 
 #define ULTRASONIC_4TIMER
-
+//define ULTRASONIC_8TIMER
  void delay_mSec(int time);
 
 

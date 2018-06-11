@@ -1,0 +1,8 @@
+--c99 -c --cpu Cortex-M4.fp -D__EVAL -g -O0 --apcs=interwork --split_sections
+-I.\RTE\Compiler
+-I.\RTE\_Target_1
+-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.1.0\CMSIS\Include
+-IC:\Keil_v5\ARM\PACK\Keil\ARM_Compiler\1.3.1\Include
+-IC:\Keil_v5\ARM\PACK\Keil\TM4C_DFP\1.1.0\Device\Include\TM4C123
+-D__UVISION_VERSION="524" -D_RTE_ -DTM4C123GH6PM
+-o .\objects\servo.o --omf_browse .\objects\servo.crf --depend .\objects\servo.d "servo\Servo.c"
