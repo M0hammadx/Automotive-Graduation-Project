@@ -17,9 +17,6 @@
 #include "inc/hw_i2c.h"
 
 
-uint8_t lcd[18]={0x98,0x87,0x76,0x65,0x54,0x43,0x98,0x87,0x76,0x65,0x54,0x43,0x98,0x87,0x76,0x65,0x54,0x43};
-	uint8_t dat[18]={0x98,0x87,0x76,0x65,0x54,0x43,0x98,0x87,0x76,0x65,0x54,0x43,0x98,0x87,0x76,0x65,0x54,0x43};
-
 
 #define MAX_SIZE  20
 
@@ -39,9 +36,9 @@ typedef struct E2PROM_Def
 	
 	uint8_t act_size;
 	
-}def;  
+}def;   //Ram objects
 
-def EE_var[5]= {{ID_1,Start_Address,18},
+def EE_var[5]= {{ID_1,Start_Address,0},
 {ID_2,Start_Address+Address_step(MAX_SIZE),0},
 {ID_3,Start_Address+2*Address_step(MAX_SIZE),0},
 {ID_4,Start_Address+3*Address_step(MAX_SIZE),0},
@@ -50,8 +47,8 @@ def EE_var[5]= {{ID_1,Start_Address,18},
 typedef struct E2PROM_DATA
 {
     uint8_t size;
-    uint8_t data[MAX_SIZE];
-}E2data;
+    uint8_t data[MAX_SIZE-1]; //updated (-1)
+}E2data; //EEPROM object
 
 unsigned long data;
 uint32_t ReadByte(uint32_t address);
@@ -66,6 +63,7 @@ int main(void)
 {
 uint32_t arr[19];
 uint8_t cnt;
+uint8_t dat[MAX_SIZE-1];
 	for(int i=0;i<18;i++){
 		dat[i]=i;
 	}
@@ -79,7 +77,7 @@ ROM_SysCtlClockSet(SYSCTL_SYSDIV_1 | SYSCTL_USE_OSC | SYSCTL_OSC_MAIN |SYSCTL_XT
 //
 // The I2C1 peripheral must be enabled before use.
 //
-ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C1);
+ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C2);
 
 //
 // For this example I2C0 is used with PortB[3:2]. The actual port and
@@ -88,7 +86,7 @@ ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C1);
 // be used.
 // TODO: change this to whichever GPIO port you are using.
 //
-ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
+ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOE);
 
 //
 // Select the I2C function for these pins. This function will also
@@ -99,16 +97,16 @@ ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOA);
 //
 //GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_2 | GPIO_PIN_3);
 
-ROM_GPIOPinTypeI2CSCL(GPIO_PORTA_BASE, GPIO_PIN_6); // I2CSCL
-ROM_GPIOPinTypeI2C(GPIO_PORTA_BASE, GPIO_PIN_7);
+ROM_GPIOPinTypeI2CSCL(GPIO_PORTE_BASE, GPIO_PIN_4); // I2CSCL
+ROM_GPIOPinTypeI2C(GPIO_PORTE_BASE, GPIO_PIN_5);
 
 //
 // Configure the pin muxing for I2C0 functions on port B2 and B3.
 // This step is not necessary if your part does not support pin muxing.
 // TODO: change this to select the port/pin you are using.
 //
-ROM_GPIOPinConfigure(GPIO_PA6_I2C1SCL);
-ROM_GPIOPinConfigure(GPIO_PA7_I2C1SDA);
+ROM_GPIOPinConfigure(GPIO_PE4_I2C2SCL);
+ROM_GPIOPinConfigure(GPIO_PE5_I2C2SDA);
 
 //
 // Enable and initialize the I2C0 master module. Use the system clock for
@@ -117,7 +115,7 @@ ROM_GPIOPinConfigure(GPIO_PA7_I2C1SDA);
 // be set to 400kbps. For this example we will use a data rate of 100kbps.
 //
 
-ROM_I2CMasterInitExpClk(I2C1_BASE, SysCtlClockGet(), false);
+ROM_I2CMasterInitExpClk(I2C2_BASE, SysCtlClockGet(), false);
 
 //
 // Tell the master module what address it will place on the bus when
@@ -143,34 +141,35 @@ Read_ee(ID_1,arr,&cnt);
 //return(0);
 }
 
-void Write_ee(uint8_t ID,uint8_t *send,uint8_t n){
+void Write_ee(uint8_t ID,uint8_t *send,uint8_t n){ // n not exceeds 19
 	int idx=0;
-	while(EE_var[idx].ID!=ID){idx++;}
-	
-	
-	uint8_t arr[16];
-	arr[0]=n;
-	int i=1;
-	for(;i<16;i++){//send 1st 15-byte
-		arr[i]=send[i-1];
+	if(n <= 19){ //check data length
+			while(EE_var[idx].ID!=ID && (idx < (MAX_ELEMENT_NO))){idx++;} //fkn bug
+			if(idx >= MAX_ELEMENT_NO){
+				//error report
+			}
+			else{
+			EE_var[idx].act_size=n;
+			uint8_t arr[20];
+			arr[0]=n;
+			
+			for(int i=1;i<20;i++){//send 1st 15-byte
+				arr[i]=send[i-1];
+			}
+			
+			WriteByteArray(EE_var[idx].start_address,arr,19 );		
+
+		}
 	}
-	
-  WriteByteArray(EE_var[idx].start_address,arr,16 );		
-if(n>15){
-	/*uint8_t arr2[n-15];
-	for(i=0;i<n-15;i++){
-		arr2[i]=send[i+15];
-	}*/
-  WriteByteArray(EE_var[idx].start_address+16,&send[15],n-15 );		
-	
-}
+	else{}
 }
 
 void Read_ee(uint8_t ID,uint32_t *arr,uint8_t *cnt){
 	*cnt=EE_var[0].act_size;
 	int i=0;
 	while(EE_var[i].ID!=ID){
-	i++;*cnt=EE_var[i].act_size;
+	i++;
+	*cnt=EE_var[i].act_size;
 	}
 	
 	ReadByteArray(EE_var[i].start_address,arr,(*cnt )+1);		
@@ -181,20 +180,20 @@ void Read_ee(uint8_t ID,uint32_t *arr,uint8_t *cnt){
 void WriteByte(uint32_t address,uint8_t send){
 
 	bool A0=(address>>8)&1;
-	ROM_I2CMasterSlaveAddrSet(I2C1_BASE, 0x50|A0, false); // The address of the Slave is 0x50
+	ROM_I2CMasterSlaveAddrSet(I2C2_BASE, 0x50|A0, false); // The address of the Slave is 0x50
 
-ROM_I2CMasterDataPut(I2C1_BASE, address); 
+ROM_I2CMasterDataPut(I2C2_BASE, address); 
 
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_SEND_START);
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_SEND_START);
 
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
 
-ROM_I2CMasterDataPut(I2C1_BASE, send); 
+ROM_I2CMasterDataPut(I2C2_BASE, send); 
 
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
 
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
 ROM_SysCtlDelay(5500000); // writing time
 	
@@ -206,22 +205,22 @@ uint32_t ReadByte(uint32_t address){
 	uint32_t recv=0x5555;
 		bool A0=(address>>8)&1;
 	
-ROM_I2CMasterSlaveAddrSet(I2C1_BASE, 0x50|A0, false);
+ROM_I2CMasterSlaveAddrSet(I2C2_BASE, 0x50|A0, false);
 
-ROM_I2CMasterDataPut(I2C1_BASE, address);
+ROM_I2CMasterDataPut(I2C2_BASE, address);
 
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_SINGLE_SEND); //dummy
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_SINGLE_SEND); //dummy
 
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
 
-ROM_I2CMasterSlaveAddrSet(I2C1_BASE, 0x50|A0, true);
+ROM_I2CMasterSlaveAddrSet(I2C2_BASE, 0x50|A0, true);
 
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_SINGLE_RECEIVE);
 
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
-recv = ROM_I2CMasterDataGet(I2C1_BASE); //test
+recv = ROM_I2CMasterDataGet(I2C2_BASE); //test
 
 
 	
@@ -237,33 +236,33 @@ void WriteByteArray(uint32_t address,uint8_t *send,uint8_t n){
 	
 	bool A0=(address>>8)&1;
 	
-	ROM_I2CMasterSlaveAddrSet(I2C1_BASE, 0x50|A0, false); // The address of the Slave is 0x50
+	ROM_I2CMasterSlaveAddrSet(I2C2_BASE, 0x50|A0, false); // The address of the Slave is 0x50
 
-ROM_I2CMasterDataPut(I2C1_BASE, address); 
+ROM_I2CMasterDataPut(I2C2_BASE, address); 
 
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_SEND_START);
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_SEND_START);
 
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
 if(n>16)n=16;
 	
 for (i=0;i<n-1;i++)
 {
 	bla=send[i];
-ROM_I2CMasterDataPut(I2C1_BASE, send[i]); // data to be saved at Addr 0x11 under autoincrement mode
+ROM_I2CMasterDataPut(I2C2_BASE, send[i]); // data to be saved at Addr 0x11 under autoincrement mode
 
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_SEND_CONT);
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_SEND_CONT);
 
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
 }
 	
 
-ROM_I2CMasterDataPut(I2C1_BASE, send[i]); // data to be saved at Addr 0x12 under autoincrement mode
+ROM_I2CMasterDataPut(I2C2_BASE, send[i]); // data to be saved at Addr 0x12 under autoincrement mode
 
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);
 
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
 ROM_SysCtlDelay(5500000); // writing time
 	
@@ -275,36 +274,36 @@ int i=1;
 	
 		bool A0=(address>>8)&1;
 	
-ROM_I2CMasterSlaveAddrSet(I2C1_BASE, 0x50|A0, false);
+ROM_I2CMasterSlaveAddrSet(I2C2_BASE, 0x50|A0, false);
 
-ROM_I2CMasterDataPut(I2C1_BASE, address); // Addr 0x11
+ROM_I2CMasterDataPut(I2C2_BASE, address); // Addr 0x11
 
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_SINGLE_SEND);
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_SINGLE_SEND);
 
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
 //
-ROM_I2CMasterSlaveAddrSet(I2C1_BASE, 0x50|A0, true);
+ROM_I2CMasterSlaveAddrSet(I2C2_BASE, 0x50|A0, true);
 
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_RECEIVE_START);
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_RECEIVE_START);
 
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
-arr[0] = ROM_I2CMasterDataGet(I2C1_BASE); //test
+arr[0] = ROM_I2CMasterDataGet(I2C2_BASE); //test
 	
 
 for (i=1;i<cnt;i++)
 {
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_RECEIVE_CONT);
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_RECEIVE_CONT);
 //
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
-arr[i] = ROM_I2CMasterDataGet(I2C1_BASE); //Receive
+arr[i] = ROM_I2CMasterDataGet(I2C2_BASE); //Receive
 }
 
-ROM_I2CMasterControl(I2C1_BASE, I2C_MASTER_CMD_BURST_RECEIVE_FINISH);
+ROM_I2CMasterControl(I2C2_BASE, I2C_MASTER_CMD_BURST_RECEIVE_FINISH);
 //
-while(ROM_I2CMasterBusy(I2C1_BASE));
+while(ROM_I2CMasterBusy(I2C2_BASE));
 
 
 	
