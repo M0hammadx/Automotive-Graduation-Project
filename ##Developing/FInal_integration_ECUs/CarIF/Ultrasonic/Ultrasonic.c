@@ -3,30 +3,30 @@
 uint8_t ULTRASONIC;
 
 //for testing
-int x = 0;
-int y = 0;
+//static int x = 0;
+//static int y = 0;
 
 // flag = 1   ---> this ultrasonic has been activated
-uint8_t Front_Left_Ultrasonic_flag = 0;
-uint8_t Front_Right_Ultrasonic_flag = 0;
-uint8_t Right_Front_Ultrasonic_flag = 0;
-uint8_t Right_Back_Ultrasonic_flag = 0;
-uint8_t Back_Right_Ultrasonic_flag = 0;
-uint8_t Back_Left_Ultrasonic_flag = 0;
-uint8_t Left_Back_Ultrasonic_flag = 0;
-uint8_t Left_Front_Ultrasonic_flag = 0;
+static uint8_t Front_Left_Ultrasonic_flag = 0;
+static uint8_t Front_Right_Ultrasonic_flag = 0;
+static uint8_t Right_Front_Ultrasonic_flag = 0;
+static uint8_t Right_Back_Ultrasonic_flag = 0;
+static uint8_t Back_Right_Ultrasonic_flag = 0;
+static uint8_t Back_Left_Ultrasonic_flag = 0;
+static uint8_t Left_Back_Ultrasonic_flag = 0;
+static uint8_t Left_Front_Ultrasonic_flag = 0;
 
 // if trig =1  ---> trig this ultrasonic	
-uint8_t Front_Left_Ultrasonic_Trig = 0;
-uint8_t Front_Right_Ultrasonic_Trig = 0;
-uint8_t Right_Front_Ultrasonic_Trig = 0;
-uint8_t Right_Back_Ultrasonic_Trig = 0;
-uint8_t Back_Right_Ultrasonic_Trig = 0;
-uint8_t Back_Left_Ultrasonic_Trig = 0;
-uint8_t Left_Back_Ultrasonic_Trig = 0;
-uint8_t Left_Front_Ultrasonic_Trig = 0;
+static uint8_t Front_Left_Ultrasonic_Trig = 0;
+static uint8_t Front_Right_Ultrasonic_Trig = 0;
+static uint8_t Right_Front_Ultrasonic_Trig = 0;
+static uint8_t Right_Back_Ultrasonic_Trig = 0;
+static uint8_t Back_Right_Ultrasonic_Trig = 0;
+static uint8_t Back_Left_Ultrasonic_Trig = 0;
+static uint8_t Left_Back_Ultrasonic_Trig = 0;
+static uint8_t Left_Front_Ultrasonic_Trig = 0;
 
-uint32_t Ultrasonic_Reading[8];
+static uint32_t Ultrasonic_Reading[8];
 
 void Front_Left_Ultrasonic_Handler(void);
 void Front_Right_Ultrasonic_Handler(void);

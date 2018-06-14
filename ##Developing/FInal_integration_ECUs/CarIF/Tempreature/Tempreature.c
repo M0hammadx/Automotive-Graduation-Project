@@ -15,6 +15,7 @@ static volatile uint32_t ui32TempValueF;           // Variable to store the Temp
 void TempreatureSensor_Init(void)
 {
     ROM_SysCtlPeripheralEnable(SYSCTL_PERIPH_ADC0);
+    while(!ROM_SysCtlPeripheralReady(SYSCTL_PERIPH_ADC0)){}; //wait until clock stable
 
     // Enable hardware averaging on ADC0
     ROM_ADCHardwareOversampleConfigure(ADC0_BASE, 64);

@@ -12,7 +12,7 @@
 #ifdef ECU1_SENSORYNODE
 #include "Encoder/Encoder.h"
 
-//#include "Compass/Compass.h"
+#include "Compass/Compass.h"
 #include "Tempreature/Tempreature.h"
 #endif
 
@@ -43,12 +43,12 @@ static uint8_t u8SteerAngle_global;
 void Car_Modules_Init(void)
 {
 
-     TempreatureSensor_Init();
+  //  TempreatureSensor_Init();
 #ifdef ECU1_SENSORYNODE
 
-    // Compass_Init();
-   // Encoder_Init();
-    Ultrasonic_Init();
+    Compass_Init();
+    // Encoder_Init();
+   // Ultrasonic_Init();
 #endif
 
 #ifdef ECU2_ALGORITHMICNODE
@@ -144,7 +144,7 @@ static void PID_Init(void)
 
 void SysTick_Handler(void) //periodic task from RTOS
 {
- //   PID_Speed_System();
+    //   PID_Speed_System();
 //PID_Angle_System();
 //Motor_PWM_Speed_Control(pwm,pwm);
 //	if(pwm<620) pwm+=31;
@@ -154,17 +154,17 @@ void SysTick_Handler(void) //periodic task from RTOS
 void Car_Get_Car_Info(g_CarInfo_t* CarInfo)
 {
 
+    // Temprature_Get_Temp(&(CarInfo->Device_Temprature));
+
 #ifdef ECU1_SENSORYNODE
-    uint16_t Motors_RPM[2];
-    Encoder_Get_Motors_RPM(Motors_RPM);
-    CarInfo->Motor_R_RPM = Motors_RPM[0];
-    CarInfo->Motor_L_RPM = Motors_RPM[1];
-    Encoder_Get_Distance_Elapsed(&(CarInfo->Distance_Elapsed));
-    //  PID_Get_Current_Car_Speed(&(CarInfo->Car_Speed));
-    //int32_t x,y;
-//Compass_Get_Angles(&x,&y);
-//CarInfo->x_angle = x;
-//CarInfo->y_angle = y;
+//    uint16_t Motors_RPM[2];
+//    Encoder_Get_Motors_RPM(Motors_RPM);
+//    CarInfo->Motor_R_RPM = Motors_RPM[0];
+//    CarInfo->Motor_L_RPM = Motors_RPM[1];
+//    Encoder_Get_Distance_Elapsed(&(CarInfo->Distance_Elapsed));
+//    PID_Get_Current_Car_Speed(&(CarInfo->myCar_Speed));
+
+    Compass_Get_Angles(&(CarInfo->myCar_Angle));
 
 #endif
 
@@ -177,6 +177,6 @@ void Car_Get_Car_Info(g_CarInfo_t* CarInfo)
 
 #endif
 
-Temprature_Get_Temp(&(CarInfo->Device_Temprature ));
+
 
 }

@@ -114,28 +114,31 @@ static void LANEFOLLOW_Task(void)
 uint32_t dist1, dist2, dist3, dist4, dist5, dist6, dist7, dist8;
 void ECU_Begin(void)
 {
-
-    EnableGlobalInterrupts();
+    g_CarInfo_t myCarInfo;
+    //EnableGlobalInterrupts();
     while (1)
     {
-        delay_microSec(30000);
-        Ultrasonic_Trig(Front_Left_Ultrasonic);
-        Ultrasonic_Trig(Front_Right_Ultrasonic);
-        Ultrasonic_Trig(Right_Front_Ultrasonic);
-        Ultrasonic_Trig(Right_Back_Ultrasonic);
-        Ultrasonic_Trig(Back_Right_Ultrasonic);
-        Ultrasonic_Trig(Back_Left_Ultrasonic);
-        Ultrasonic_Trig(Left_Back_Ultrasonic);
-        Ultrasonic_Trig(Left_Front_Ultrasonic);
+        //delay_microSec(30000); //this function is must be init with the ultrasonic :D
+        for(int k=0 ; k<=8000000;k++);
+//        Ultrasonic_Trig(Front_Left_Ultrasonic);
+//        Ultrasonic_Trig(Front_Right_Ultrasonic);
+//        Ultrasonic_Trig(Right_Front_Ultrasonic);
+//        Ultrasonic_Trig(Right_Back_Ultrasonic);
+//        Ultrasonic_Trig(Back_Right_Ultrasonic);
+//        Ultrasonic_Trig(Back_Left_Ultrasonic);
+//        Ultrasonic_Trig(Left_Back_Ultrasonic);
+//        Ultrasonic_Trig(Left_Front_Ultrasonic);
+//
+//        dist1 = Get_Distant(Front_Left);
+//        dist2 = Get_Distant(Front_Right);
+//        dist3 = Get_Distant(Right_Front);
+//        dist4 = Get_Distant(Right_Back);
+//        dist5 = Get_Distant(Back_Right);
+//        dist6 = Get_Distant(Back_Left);
+//        dist7 = Get_Distant(Left_Back);
+//        dist8 = Get_Distant(Left_Front);
 
-        dist1 = Get_Distant(Front_Left);
-        dist2 = Get_Distant(Front_Right);
-        dist3 = Get_Distant(Right_Front);
-        dist4 = Get_Distant(Right_Back);
-        dist5 = Get_Distant(Back_Right);
-        dist6 = Get_Distant(Back_Left);
-        dist7 = Get_Distant(Left_Back);
-        dist8 = Get_Distant(Left_Front);
+        Car_Get_Car_Info(&myCarInfo );
 
     }
 

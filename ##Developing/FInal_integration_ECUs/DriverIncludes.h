@@ -9,7 +9,8 @@
 #define DRIVERINCLUDES_H_
 //#define PART_TM4C123GH6PM //this is defined already into ccs options ARM-comiler predefined symbols
 //#define TARGET_IS_BLIZZARD_RB1 //this is defined already into ccs options ARM-comiler predefined symbols
-
+#include <stdarg.h>
+#include <math.h>
 #include <stdint.h>                         // Library of Standard Integer Types
 #include <stdbool.h>                        // Library of Standard Boolean Types
 #include <stdlib.h>                         // Standard Library
@@ -19,6 +20,8 @@
 #include "inc/hw_memmap.h"                  // Macros defining the memory map of the Tiva C Series device
 #include "inc/hw_types.h"                   // Defines common types and macros
 #include "inc/hw_gpio.h"
+#include "inc/hw_i2c.h"
+#include "driverlib/i2c.h"
 #include "driverlib/sysctl.h"               // Defines and macros for System Control API of DriverLib
 #include "driverlib/interrupt.h"            // Defines and macros for NVIC Controller API of DriverLib
 #include "driverlib/gpio.h"                 // Defines and macros for GPIO API of DriverLib
