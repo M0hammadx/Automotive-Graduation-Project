@@ -36,8 +36,8 @@ void delay_mSec(int time);
 //8 Timers
 //front_Left    Echo->PB0    Trig->PE0   
 //front_Right   Echo->pB2    Trig->PE1
-//Righ_Front    Ech0->PB3    Trig->PE2
-//Righ_Back     Echo->pD1    Trig->PE3
+//Right_Front    Ech0->PB3    Trig->PE2
+//Right_Back     Echo->pD1    Trig->PE3
 //Back_Right    Echo->PD2    Trig->PA4 
 //Back_Left     Echo->pD3    Trig->PA5
 //Left_Back     Echo->PF2    Trigh->PB6  

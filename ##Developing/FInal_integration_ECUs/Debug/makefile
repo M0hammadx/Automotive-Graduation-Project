@@ -207,7 +207,7 @@ BIN_OUTPUTS__QUOTED += \
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(A_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "FInal_integration_ECUs.out"
+	@$(MAKE) --no-print-directory -Onone "FInal_integration_ECUs.out" secondary-outputs
 
 # Tool invocations
 FInal_integration_ECUs.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(A_SRCS) $(GEN_CMDS)
@@ -232,6 +232,8 @@ clean:
 	-$(RM) "driverlib\epi_workaround_ccs.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
+
+secondary-outputs: $(BIN_OUTPUTS)
 
 .PHONY: all clean dependents
 .SECONDARY:
