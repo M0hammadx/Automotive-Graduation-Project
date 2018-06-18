@@ -4,9 +4,9 @@
  *  Created on: Feb 28, 2018
  *      Author: Mohab
  */
+#include "../CAR_PERIPHERALS_PARAMETERS.h"
 #include "../ECU_CONFIGURATION.h"
 #include "CarIF.h"
-
 //#include "Tempreature/Tempreature.h"
 
 #ifdef ECU1_SENSORYNODE
@@ -17,8 +17,8 @@
 #endif
 
 #ifdef ECU2_ALGORITHMICNODE
-#include "CarTaskControl/ControlButtons.h"
-#include "CarTaskControl/ControlInput.h"
+//#include "CarTaskControl/ControlButtons.h"
+//#include "CarTaskControl/ControlInput.h"
 #endif
 
 #ifdef ECU3_ACTUATORNODE
@@ -31,28 +31,25 @@
 #endif
 
 #ifdef ECU3_ACTUATORNODE
-static void PID_Init(void);
 
-//#define CAR_SPEED_IN_Km_PER_HR
-#define CAR_SPEED_IN_METER_PER_HR
-
+//static void PID_Init(void);
 int pwm = 300;
-
 static uint8_t u8SteerAngle_global;
+
 #endif
 void Car_Modules_Init(void)
 {
 
-  //  TempreatureSensor_Init();
+    //  TempreatureSensor_Init();
 #ifdef ECU1_SENSORYNODE
 
     Compass_Init();
     // Encoder_Init();
-   // Ultrasonic_Init();
+     Ultrasonic_Init();
 #endif
 
 #ifdef ECU2_ALGORITHMICNODE
-    Buttons_Init();
+    // Buttons_Init();
 
 #endif
 
@@ -61,7 +58,7 @@ void Car_Modules_Init(void)
 
     Motor_DIO_Init();
     Motor_PWM_Init();
-    Motor_PID_Init();
+    // Motor_PID_Init();
     // Steering_Init();
     // PID_Angle_Init();
 #endif
@@ -99,7 +96,8 @@ void Car_Change_Speed(uint16_t u16Car_Speed)
 {
 
 #ifdef CAR_SPEED_IN_Km_PER_HR
-    uint16_t desired_rpm = (uint16_t)((double)u16Car_Speed*1000)/(60*pi*diameter);
+    uint16_t desired_rpm = (uint16_t) ((double) u16Car_Speed * 1000)
+            / (60 * pi * diameter);
     set_Desired_RPM(desired_rpm);
 #endif
 
@@ -125,30 +123,30 @@ void Car_Change_Steer_Angle(uint8_t u8SteerAngle)
 //Servo angle 65 <-> 75 <-> 85
     Servo_Go(u8SteerAngle + 65);
 }
-
-static void SysTick_Init(void)
-{
-    NVIC_ST_CTRL_R = 0;            // disable systick
-    NVIC_ST_RELOAD_R = 80000000 - 1;// 1s  //240000 3ms
-    NVIC_ST_CURRENT_R = 0;
-    NVIC_SYS_PRI3_R &= ~0XFF000000;// priority 0
-    NVIC_ST_CTRL_R = 0X04;// setup the clk src
-}
-
-static void PID_Init(void)
-{
-    // PID_Speed_Init();     //from Motor_PID_Module
-//PID_Angle_Init();		//From Servo_PID_Module
-    //SysTick_Init();//this function must set the Systick timeout to 30 ms
-}
-
-void SysTick_Handler(void) //periodic task from RTOS
-{
-    //   PID_Speed_System();
-//PID_Angle_System();
-//Motor_PWM_Speed_Control(pwm,pwm);
+//
+//static void SysTick_Init(void)
+//{
+//    NVIC_ST_CTRL_R = 0;            // disable systick
+//    NVIC_ST_RELOAD_R = 80000000 - 1;            // 1s  //240000 3ms
+//    NVIC_ST_CURRENT_R = 0;
+//    NVIC_SYS_PRI3_R &= ~0XFF000000;            // priority 0
+//    NVIC_ST_CTRL_R = 0X04;            // setup the clk src
+//}
+//
+//static void PID_Init(void)
+//{
+//  PID_Speed_Init();     //from Motor_PID_Module
+//  PID_Angle_Init();		//From Servo_PID_Module
+//  SysTick_Init();//this function must set the Systick timeout to 30 ms
+//}
+//
+//void SysTick_Handler(void) //periodic task from RTOS
+//{
+//  PID_Speed_System();
+//  PID_Angle_System();
+//  Motor_PWM_Speed_Control(pwm,pwm);
 //	if(pwm<620) pwm+=31;
-}
+//}
 #endif
 
 void Car_Get_Car_Info(g_CarInfo_t* CarInfo)
@@ -176,7 +174,5 @@ void Car_Get_Car_Info(g_CarInfo_t* CarInfo)
     CarInfo->Steering_Angle = u8SteerAngle_global;
 
 #endif
-
-
 
 }

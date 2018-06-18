@@ -21,8 +21,8 @@ typedef struct CarInfo{
 	uint16_t Motor_L_RPM;
 	double Distance_Elapsed;
 	double myCar_Angle;
-
 #endif
+
 
 	uint32_t Device_Temprature;
 }g_CarInfo_t;
