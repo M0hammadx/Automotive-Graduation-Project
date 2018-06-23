@@ -17,5 +17,6 @@ typedef enum
 } g_ErrorType;
 
 g_ErrorType ECU_Init(void);
+void ECU2_Begin_SWC1(void);
 void ECU_Begin(void);
 #endif /* ECU_H_ */

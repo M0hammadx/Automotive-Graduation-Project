@@ -6,14 +6,12 @@
  */
 #include "../CAR_PERIPHERALS_PARAMETERS.h"
 #include "../ECU_CONFIGURATION.h"
+#include "Tempreature/Tempreature.h"
 #include "CarIF.h"
-//#include "Tempreature/Tempreature.h"
 
 #ifdef ECU1_SENSORYNODE
 #include "Encoder/Encoder.h"
-
 #include "Compass/Compass.h"
-#include "Tempreature/Tempreature.h"
 #endif
 
 #ifdef ECU2_ALGORITHMICNODE
@@ -25,6 +23,7 @@
 
 #include "Motor/Motor_DIO.h"
 #include "Motor/Motor_PWM.h"
+
 #include "Motor/Motor_PID.h"
 #include "Servo/Servo.h"
 
@@ -40,12 +39,12 @@ static uint8_t u8SteerAngle_global;
 void Car_Modules_Init(void)
 {
 
-    //  TempreatureSensor_Init();
+    TempreatureSensor_Init();
 #ifdef ECU1_SENSORYNODE
 
     Compass_Init();
     // Encoder_Init();
-     Ultrasonic_Init();
+    Ultrasonic_Init();
 #endif
 
 #ifdef ECU2_ALGORITHMICNODE
@@ -91,20 +90,32 @@ void Car_Change_Direction(g_Car_Direction Dir)
  * this function parameter passed by m/hr
  * this function converts from m/hr to RPM and set it into global variable
  */
-
+uint16_t PWM=0;
 void Car_Change_Speed(uint16_t u16Car_Speed)
 {
 
-#ifdef CAR_SPEED_IN_Km_PER_HR
+#ifdef CAR_SPEED_IN_Km_PER_HR //MAX 5.7
     uint16_t desired_rpm = (uint16_t) ((double) u16Car_Speed * 1000)
             / (60 * pi * diameter);
+#ifdef Motor_without_PID
+
+#endif
+#ifdef Motor_with_PID
     set_Desired_RPM(desired_rpm);
 #endif
+#endif
 
-#ifdef CAR_SPEED_IN_METER_PER_HR
+#ifdef CAR_SPEED_IN_METER_PER_HR  //MAX 5700
     uint16_t desired_rpm = (uint16_t) ((double) u16Car_Speed)
     / (60 * pi * diameter);
+#ifdef Motor_without_PID
+    PWM= (desired_rpm+b)/k;
+    Motor_PWM_Speed_Control(PWM,PWM);
+
+#endif
+#ifdef Motor_with_PID
     set_Desired_RPM(desired_rpm);
+#endif
 #endif
 
 }
@@ -152,7 +163,7 @@ void Car_Change_Steer_Angle(uint8_t u8SteerAngle)
 void Car_Get_Car_Info(g_CarInfo_t* CarInfo)
 {
 
-    // Temprature_Get_Temp(&(CarInfo->Device_Temprature));
+    Temprature_Get_Temp(&(CarInfo->Device_Temprature));
 
 #ifdef ECU1_SENSORYNODE
 //    uint16_t Motors_RPM[2];

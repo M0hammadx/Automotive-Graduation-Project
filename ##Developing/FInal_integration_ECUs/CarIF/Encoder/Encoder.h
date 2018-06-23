@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "../../DriverIncludes.h"
+#include "../../CAR_PERIPHERALS_PARAMETERS.h"
 /**********************defines*******************/
 #define   maxDistance           43.96         //cm
 #define   Max_Position          12
@@ -13,9 +14,7 @@
 #define   priority1             0xE0
 #define   system_freq           80      // in MHz
 #define   Encoder_timer_Load    0.8     // load /10^6
-#define   gear_ratio            75
-#define   diameter              0.14 // in meter
-#define   pi                    3.14
+
 //#define CAR_SPEED_IN_METER_PER_HR
 
 /*******************Functions_ProtoTypes**************/

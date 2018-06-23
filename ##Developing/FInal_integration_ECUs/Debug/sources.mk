@@ -119,9 +119,13 @@ CarIF/Motor \
 CarIF/Servo \
 CarIF/Tempreature \
 CarIF/Ultrasonic \
+Com \
+Com/HAL \
+SL \
 driverlib \
 driverlib/ccs/Debug \
 driverlib/ewarm/Exe \
 driverlib/gcc \
 driverlib/rvmdk \
+rte \
 

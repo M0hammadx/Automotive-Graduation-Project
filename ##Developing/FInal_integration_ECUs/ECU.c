@@ -10,6 +10,16 @@
 #include "System.h"
 //#include "Communication/Communication.h" //inside Communication.c include can pdur canif and init the whole comm stack
 //and esp also
+#ifdef ECU2_ALGORITHMICNODE
+#include "rte/Ultrasonic_data_rte.h"
+#include "rte/Ultrasonic_requests_rte.h"
+#endif
+
+#ifdef ECU1_SENSORYNODE
+#include "rte/Ultrasonic_data_rte.h"
+#include "rte/Ultrasonic_requests_rte.h"
+#endif
+
 typedef enum
 {
     PARKING = 0, LANEFOLLOW, DIAGNOSTIC
@@ -47,6 +57,7 @@ static void GetRquestedTask(g_CarTask* CarTask)
 //polling wait the request of the operation typically
 #ifdef ECU1_SENSORYNODE
     //Received from CAN bus //blocking
+
 #endif
 
 #ifdef ECU2_ALGORITHMICNODE
@@ -66,6 +77,7 @@ static void PERPENDICULAR_Parking_Task(void)
 
 #ifdef ECU1_SENSORYNODE
     //write your code here for the sensory ECU
+
 #endif
 #ifdef ECU2_ALGORITHMICNODE
     //write your code here for the Algorithmic ECU
@@ -111,12 +123,15 @@ static void LANEFOLLOW_Task(void)
 }
 
 //===========================================================================================================
-uint32_t dist1, dist2, dist3, dist4, dist5, dist6, dist7, dist8;
 g_CarInfo_t myCarInfo;
+
+#ifdef ECU1_SENSORYNODE
+uint32_t dist1, dist2, dist3, dist4, dist5, dist6, dist7, dist8;
+
 void ECU_Begin(void)
 {
 
-    //EnableGlobalInterrupts();
+    EnableGlobalInterrupts();
     while (1)
     {
         delay_microSec(30000); //this function is must be init with the ultrasonic :D
@@ -143,10 +158,12 @@ void ECU_Begin(void)
 
     }
 
-    /*while (1)
+    /*
+     * g_CarTask myCarTask;
+     * while (1)
      {
      //wait for parking | Lane follow request interrupt from UART0 | Hardware switch
-     g_CarTask myCarTask;
+
      GetRquestedTask(&myCarTask); //blocking function waiting for the request
      #ifdef ECU3_ACTUATORNODE
      //send identifier of the task on can to other ecus
@@ -169,14 +186,53 @@ void ECU_Begin(void)
      }
      */
 }
+#endif
 
-void ECU_Begin1(void){
+#ifdef ECU2_ALGORITHMICNODE
+void ECU2_Begin_SWC1(void)
+{
+    while(1)
+    {
+        Rte_Ultrasonic_requests_iwrite(Front_Left_Ultrasonic|Back_Left_Ultrasonic);
+        Rte_Ultrasonic_data_iread(Front_Left);
+        Rte_Ultrasonic_data_iread(Back_Left);
 
-
+    }
 
 }
 
+#endif
 
-void ECU_Begin2(void){
+#ifdef ECU3_ACTUATORNODE
+void ECU_Begin(void)
+{
+    while (1)
+    {
+        Car_Change_Direction(Car_FORWARD);
+        //Motor_PWM_Speed_Control(620, 620);
+        Car_Change_Speed(5700);
+        for (int k = 0; k <= 8000000; k++)
+            ;
 
+        Car_Change_Direction(Car_FORWARD);
+        //  Motor_PWM_Speed_Control(300, 300);
+        Car_Change_Speed(4500);
+        for (int k = 0; k <= 8000000; k++)
+            ;
+
+        Car_Change_Direction(Car_BACKWARD);
+        // Motor_PWM_Speed_Control(620, 620);
+        Car_Change_Speed(2000);
+        for (int k = 0; k <= 8000000; k++)
+            ;
+
+        Car_Change_Direction(Car_BACKWARD);
+        //Motor_PWM_Speed_Control(300, 300);
+        Car_Change_Speed(1000);
+        for (int k = 0; k <= 8000000; k++)
+            ;
+
+    }
 }
+
+#endif

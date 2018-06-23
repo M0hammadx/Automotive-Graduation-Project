@@ -33,7 +33,8 @@ void ResetISR(void);
 static void NmiSR(void);
 static void FaultISR(void);
 static void IntDefaultHandler(void);
-
+extern void CAN0_Handler(void);
+extern void CAN1_Handler(void);
 extern void Front_Right_Ultrasonic_Handler();
 extern void Front_Left_Ultrasonic_Handler();               // Timer 2 subtimer A
 extern void Left_Back_Ultrasonic_Handler();                // Timer 1 subtimer A
@@ -130,8 +131,8 @@ void (* const g_pfnVectors[])(void) =
         Right_Front_Ultrasonic_Handler,// Timer 3 subtimer B
         IntDefaultHandler,// I2C1 Master and Slave
         IntDefaultHandler,// Quadrature Encoder 1
-        IntDefaultHandler,// CAN0
-        IntDefaultHandler,// CAN1
+        CAN0_Handler,// CAN0
+        CAN1_Handler,// CAN1
         0,// Reserved
         0,// Reserved
         IntDefaultHandler,// Hibernate

@@ -10,7 +10,7 @@
 
 
 #define   gear_ratio            75
-#define   diameter              0.14 // in meter
+#define   diameter              0.2 // in meter
 #define   pi                    3.14
 
 

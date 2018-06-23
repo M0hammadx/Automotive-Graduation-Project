@@ -35,5 +35,5 @@
 #include "driverlib/timer.h"
 #include "driverlib/debug.h"
 #include "driverlib/rom.h"                  // Defines and macros for ROM API of driverLib
-
+#include <stdbool.h>
 #endif /* DRIVERINCLUDES_H_ */

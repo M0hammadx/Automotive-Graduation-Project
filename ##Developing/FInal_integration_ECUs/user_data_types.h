@@ -11,6 +11,7 @@
 #define USERDATATYPES_H_
 
 #include "ECU_CONFIGURATION.h"
+//#include
 typedef struct CarInfo{
 #ifdef  ECU3_ACTUATORNODE
 	uint8_t Steering_Angle;
@@ -23,7 +24,9 @@ typedef struct CarInfo{
 	double myCar_Angle;
 #endif
 
+#ifdef ECU2_ALGORITHMICNODE
 
+#endif
 	uint32_t Device_Temprature;
 }g_CarInfo_t;
 

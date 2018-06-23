@@ -43,29 +43,19 @@ int main(void)
 #ifdef debug
     Output_Init_Debug();
 #endif
-ECU_Begin();
+    ECU2_Begin_SWC1();
     return 0;
 }
 
 
-int main2(){
 
-return 0;
-}
-
-int main3(){
-
-    return 0;
-}
-int main4(){
-
-    return 0;
-}
-int main5(){
-
-    return 0;
-}
-int main6(){
-
-    return 0;
+void Delay100ms(unsigned long time){
+  unsigned long i;
+  while(time > 0){
+    i = 1333333;  // this number means 100ms
+    while(i > 0){
+      i = i - 1;
+    }
+    time = time - 1; // decrements every 100 ms
+  }
 }
